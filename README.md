@@ -1,4 +1,4 @@
-# local UserInputService = game:GetService("UserInputService")
+local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local Camera = workspace.CurrentCamera
@@ -6,7 +6,7 @@ local LocalPlayer = Players.LocalPlayer
 
 local AimbotEnabled = false
 local AimbotKey = Enum.KeyCode.E
-local AimFOV = 100 -- Campo de visão ajustável
+local AimFOV = 250 -- Campo de visão ajustável
 
 function GetClosestEnemy()
     local closestEnemy = nil
@@ -34,13 +34,7 @@ end
 
 UserInputService.InputBegan:Connect(function(input, processed)
     if not processed and input.KeyCode == AimbotKey then
-        AimbotEnabled = true
-    end
-end)
-
-UserInputService.InputEnded:Connect(function(input, processed)
-    if input.KeyCode == AimbotKey then
-        AimbotEnabled = false
+        AimbotEnabled = not AimbotEnabled -- Alterna entre ativado e desativado
     end
 end)
 
